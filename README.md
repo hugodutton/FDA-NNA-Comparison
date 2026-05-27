@@ -47,4 +47,4 @@ $$
     \nonumber
 \end{align}
 $$
-#### where $r=\frac{\alpha\Delta t}{\left(\Delta x\right)^2}$ is the diffusion number. ![Finite Difference Approximation](FDAHeatEquation.png)
+#### where $r=\frac{\alpha\Delta t}{\left(\Delta x\right)^2}$ is the diffusion number.
