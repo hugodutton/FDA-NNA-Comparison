@@ -1,4 +1,8 @@
-# Comparing Finite Difference Approximation and Neural Network Approximation of the 1-Dimensional Heat Equation
+# Comparing the Finite Difference Approximation and a Neural Network Approximation of the 1-Dimensional Heat Equation
+
+## Introduction
+
+#### this is intro
 
 ## Finite Difference Approximation
 
