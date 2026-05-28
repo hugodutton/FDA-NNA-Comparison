@@ -96,7 +96,7 @@ so the thermal diffusivity $\alpha=0.01$ was chosen to ensure stability.
 
 We now have a finite difference approximation, by the forward time centred space scheme, of the temperature $u_i^{n+1}$ of the rod at position $x_i$ and time $t_{n+1}$.
 
-### The Feedforward Neural Network
+### The Optimised Feedforward Neural Network
 
 A feedforward neural network was used to approximate the solution of the heat equation through the mapping
 
@@ -107,7 +107,7 @@ $$
 \end{align}
 $$
 
-where the values $(x,t)$ are from the finite difference approximation data. Each network layer applied a linear transformation followed by a hyperbolic tangent activation function due to its smooth nonlinear behaviour. The network parameters were optimised by minimising the mean square error loss function given by
+where the values $(x,t)$ are taken from the finite difference approximation data. Each network layer applied a linear transformation followed by a hyperbolic tangent activation function due to its smooth nonlinear behaviour. The network parameters were optimised by minimising the mean square error loss function given by
 
 $$
 \begin{align}
