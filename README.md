@@ -127,3 +127,9 @@ A graph of temperature $u(x,t)$ against position $x$ created by the finite diffe
 ![Finite Difference Approximation of Heat Equation](Figures/FDAHeatEquation.png)
 
 We can see stable and realistic solutions of the heat equation, showing the gradual diffusion of the sudden extreme temperature over time. The peak widened and decreased as heat diffused through the rod from $u\approx1.0$ to $u\approx0.4$.
+
+A graph of Loss against Epoch created by the neural network approximation of the 1-dimensional heat equation can be seen below.
+
+![Training Loss](Figures/TrainingLoss.png)
+
+We can see significant decrease in loss over each epoch, specifically the first few, throughout optimisation from $\text{Loss}\approx0.27$ to $\text{Loss}\approx0.01$. This shows that the neural network effectively learned the structure of the solution of the 1-dimensional heat equation.
