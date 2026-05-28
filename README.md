@@ -144,7 +144,7 @@ Graphs of temperature $u(x,t)$ against position $x$ comparing the finite differe
     <img width="33%" src="Figures/NNAError.png">
 </p>
 
-We can see that the feedforward neural network was clearly able to approximate the overall behaviour of the temperature $u(x,t)$ increasingly accurately with each increase in time. It reproduced the smooth temperature curves specifically at later times showing that the neural network understood the process of diffusion of heat through the rod. However, from the comparison plots at earlier times and the error heatmap, we can see that the neural network produced its largest errors nearer the initial extreme temperature, showing that it has difficulty with sudden changes in behaviour. The mean squared error of the network parameters was calculated to be
+We can see that the feedforward neural network was clearly able to approximate the overall behaviour of the temperature $u(x,t)$ increasingly accurately with each increase in time. It reproduced the smooth temperature curves specifically at later times showing that the neural network understood the process of diffusion of heat through the rod. However, from the comparison plots at earlier times and the error heatmap, we can see that the neural network produced its largest errors nearer the initial extreme temperature event, showing that it has difficulty with sudden changes in behaviour. The mean squared error of the network parameters was calculated to be
 
 $$
 \begin{align}
