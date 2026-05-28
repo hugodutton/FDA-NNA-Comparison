@@ -1,8 +1,8 @@
-# Comparing the Finite Difference Approximation and a Neural Network Approximation of the 1-Dimensional Heat Equation
+# Comparing a Finite Difference Approximation and a Neural Network Approximation of the 1-Dimensional Heat Equation
 
 ## Introduction
 
-The 1-dimensional heat equation is a fundamental partial differential equation that models how heat diffuses through a single spatial dimension (rod). It describes how the temperature of a rod changes with respect to both position and time. In this project, we compare a finite difference approximation of the 1-dimensional heat equation (Forward Time Centred Space Scheme (FTCS)) to a simple neural network approximation of the 1-dimensional heat equation when given clear extreme temperature dynamics. In particular, the accuracy and error behaviour of the neural network are compared against the finite difference approximation to give us a better understanding of the effectiveness of a simple neural network approximation in this scenario.
+The 1-dimensional heat equation is a fundamental partial differential equation that models how heat diffuses through a single spatial dimension (rod). It describes how the temperature of a rod changes with respect to both position and time. In this project, we compare a finite difference approximation of the 1-dimensional heat equation to a simple neural network approximation of the 1-dimensional heat equation when given clear extreme temperature dynamics. In particular, the accuracy and error behaviour of the neural network are compared against the finite difference approximation to give us a better understanding of the effectiveness of a simple neural network approximation in this scenario.
 
 This project was mainly inspired by the "Physics-Informed Neural Networks for Modelling Extreme Temperature Dynamics" EPSRC Vacation Internship supervised by Dr Vinny Davies at the University of Glasgow.
 
@@ -34,12 +34,12 @@ $$
 \end{align}
 $$
 
-Since we are modelling extreme temperature dynamics, the initial condition was given by
+Since we are modelling extreme temperature dynamics, the initial condition was chosen to be
 
 $$
 \begin{align}
-u(x,0)=\exp\left(-100\left(x-0.5\right)^2\right),
-\nonumber
+    u(x,0)=\exp\left(-100\left(x-0.5\right)^2\right),
+    \nonumber
 \end{align}
 $$
 
@@ -67,9 +67,9 @@ then
 
 $$
 \begin{align}
-    \frac{\partial u(x,t)}{\partial t}&\approx\frac{u_i^{n+1}-u_i^n}{\Delta t},
+    \frac{\partial u}{\partial t}&\approx\frac{u_i^{n+1}-u_i^n}{\Delta t},
     \nonumber\\
-    \frac{\partial^2u(x,t)}{\partial x^2}&\approx\frac{u_{i+1}^n-2u_i^n+u_{i-1}^n}{\left(\Delta x\right)^2}.
+    \frac{\partial^2u}{\partial x^2}&\approx\frac{u_{i+1}^n-2u_i^n+u_{i-1}^n}{\left(\Delta x\right)^2}.
     \nonumber
 \end{align}
 $$
@@ -78,11 +78,42 @@ Substituting this into the 1-dimensional heat equation gives
 
 $$
 \begin{align}
-    \frac{\partial u(x,t)}{\partial t}=\alpha\frac{\partial^2u(x,t)}{\partial x^2}&&\iff&&\frac{u_i^{n+1}-u_i^n}{\Delta t}=\alpha\frac{u_{i+1}^n-2u_i^n+u_{i-1}^n}{\left(\Delta x\right)^2}&&\iff&&u_i^{n+1}=u_i^n+r\left(u_{i+1}^n-2u_i^n+u_{i-1}^n\right),&&r=\frac{\alpha\Delta t}{\left(\Delta x\right)^2},
+    \frac{\partial u}{\partial t}=\alpha\frac{\partial^2u}{\partial x^2}&&\iff&&\frac{u_i^{n+1}-u_i^n}{\Delta t}=\alpha\frac{u_{i+1}^n-2u_i^n+u_{i-1}^n}{\left(\Delta x\right)^2}&&\iff&&u_i^{n+1}=u_i^n+r\left(u_{i+1}^n-2u_i^n+u_{i-1}^n\right),&&r=\frac{\alpha\Delta t}{\left(\Delta x\right)^2},
     \nonumber
 \end{align}
 $$
 
-where $r$ is the diffusion number. 
+where $r$ is the diffusion number. For this solution to remain stable and not oscillate or diverge, $r$ must satisfy the following condition
 
-We now have the finite difference approximation of the temperature $u_i^{n+1}$ of the rod at position $x_i$ and time $t_{n+1}$.
+$$
+\begin{align}
+    r\le0.5,
+    \nonumber
+\end{align}
+$$
+
+so the thermal diffusivity $\alpha=0.01$ was chosen to ensure stability. 
+
+We now have a finite difference approximation, by the forward time centred space scheme, of the temperature $u_i^{n+1}$ of the rod at position $x_i$ and time $t_{n+1}$.
+
+## The Feedforward Neural Network
+
+A feedforward neural network was used to approximate the solution of the heat equation through the mapping
+
+$$
+\begin{align}
+    (x,t)\rightarrow u(x,t),
+    \nonumber
+\end{align}
+$$
+
+where the values $(x,t)$ are given by the finite difference approximation. Each network layer applied a linear transformation followed by a hyperbolic tangent activation function due to its smooth nonlinear behaviour. The network parameters were optimised by minimising the mean square error loss function given by
+
+$$
+\begin{align}
+    MSE=\frac{1}{100000}\sum_{i=1}^{100}\sum_{j=1}^{1000}\left(u_{i,j}-\hat{u}_{i,j}\right)^2,
+    \nonumber
+\end{align}
+$$
+
+using the Adam optimisation algorithm.
