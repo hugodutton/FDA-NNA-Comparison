@@ -6,6 +6,8 @@ The 1-dimensional heat equation is a fundamental partial differential equation t
 
 This project was mainly inspired by the "Physics-Informed Neural Networks for Modelling Extreme Temperature Dynamics" EPSRC Vacation Internship supervised by Dr Vinny Davies at the University of Glasgow.
 
+---
+
 ## Mathematical Theory
 
 ### The Forward Time Centred Space Scheme
@@ -113,6 +115,8 @@ using the Adam optimisation algorithm.
 
 We now have a neural network approximation of the temperature $u$ of the rod at position $x$ and time $t$.
 
+---
+
 ## Analysis of Results
 
 A graph of temperature $u(x,t)$ against position $x$ created by the finite difference approximation of the 1-dimensional heat equation can be seen below.
@@ -154,6 +158,8 @@ $$
 $$
 
 showing that although the neural network had noticable error at earlier times, the overall error of the parameters by the end of the training was very low, so the results analysed above can be considered valid.
+
+---
 
 ## Conclusion
 
